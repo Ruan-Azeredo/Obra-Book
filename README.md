@@ -4,6 +4,7 @@
 
 ```bash
 npm i axios
+npm i react-router-dom
 ```
 
 - Tailwind.css
