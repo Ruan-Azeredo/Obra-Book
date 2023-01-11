@@ -1,11 +1,14 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { chartIcon, groupIcon, wrenchIcon } from './icons'
+import { archiveIcon, chartIcon, documentChartIcon, documentIcon, groupIcon, wrenchIcon } from './icons'
 
 const items = [
   { link: '/dashboard', name: 'Dashboard', icon: chartIcon },
   { link: '/funcionarios', name: 'Funcionários', icon: groupIcon },
-  { link: '/ferramentas', name: 'Ferramentas', icon: wrenchIcon }
+  { link: '/ferramentas', name: 'Ferramentas', icon: wrenchIcon },
+  { link: '/materiais', name: 'Materiais', icon: archiveIcon },
+  { link: '/planejamento', name: 'Planejamento', icon: documentIcon },
+  {link: '/relatorio', name: 'Relatorio', icon: documentChartIcon}
 ]
 
 const Sidebar = () => {
@@ -23,18 +26,19 @@ const Sidebar = () => {
         .sidebar{
           margin: 15px;
           background: var(--mainColor);
-          padding: 15px;
+          padding: 150px 15px 15px 15px;
           display: flex;
           height: calc(100vh - 30px);
           border-radius: 30px;
-          grid-gap: 15px
+          grid-gap: 15px;
+          font-weight: 500;
         }
         .item{
           display: flex;
           padding: 10px 15px;
           width: 200px;
           grid-gap: 20px;
-          border-radius: 15px
+          border-radius: 15px;
         }
     `}</style>
     </div>
