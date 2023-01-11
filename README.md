@@ -5,6 +5,7 @@
 ```bash
 npm i axios
 npm i react-router-dom
+npm i @nextui-org/react
 ```
 
 - Tailwind.css
