@@ -4,6 +4,9 @@ import Sidebar from './components/Sidebar';
 import Dashboard from './pages/Dashboard';
 import Feramentas from './pages/Feramentas';
 import Funcionarios from './pages/Funcionarios';
+import Materiais from './pages/Materiais';
+import Planejamento from './pages/Planejamento';
+import Relatorio from './pages/Relatorio';
 
 function App() {
   return (
@@ -16,7 +19,10 @@ function App() {
           <Routes>
             <Route element={<Dashboard />} path='/dashboard' />
             <Route element={<Funcionarios />} path='/funcionarios' />
-            <Route element={<Feramentas/>} path='/ferramentas'/>
+            <Route element={<Feramentas />} path='/ferramentas' />
+            <Route element={<Materiais/>} path='/materiais'/>
+            <Route element={<Planejamento />} path='/planejamento' />
+            <Route element={<Relatorio/>} path='/relatorio'/>
           </Routes>
         </div>
       </BrowserRouter>
