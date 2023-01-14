@@ -8,7 +8,7 @@ const items = [
   { link: '/ferramentas', name: 'Ferramentas', icon: wrenchIcon },
   { link: '/materiais', name: 'Materiais', icon: archiveIcon },
   { link: '/planejamento', name: 'Planejamento', icon: documentIcon },
-  {link: '/relatorio', name: 'Relatorio', icon: documentChartIcon}
+  { link: '/relatorio', name: 'Relatorio', icon: documentChartIcon }
 ]
 
 const Sidebar = () => {
@@ -16,7 +16,7 @@ const Sidebar = () => {
     <div className='flex flex-col sidebar'>
       {items.map(item => (
         <NavLink to={item.link}
-        className={({isActive}) => isActive ? 'bg-white item' : 'text-white item'}
+        className={({isActive}) => isActive ? 'bg-white text-background item' : 'text-white item'}
         >
           <div>{item.icon}</div>
           <div>{item.name}</div>
