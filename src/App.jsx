@@ -15,7 +15,7 @@ function App() {
         <div>
           <Sidebar/>
         </div>
-        <div>
+        <div className='w-full'>
           <Routes>
             <Route element={<Dashboard />} path='/dashboard' />
             <Route element={<Funcionarios />} path='/funcionarios' />
