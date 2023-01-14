@@ -4,7 +4,9 @@
     --darkGray: #3d3d4e;
     --lightGray: #4f4756;
     --green: #4EBA3D;
-    --red: #E54F6D;
+    --red: #e44666;
+    --greenTransparent: rgba(78, 186, 61, 0.2);
+    --redTransparent: rgb(228, 70, 102, 0.2);
 }
 
 #root{
