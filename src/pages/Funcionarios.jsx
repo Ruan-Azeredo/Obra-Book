@@ -83,7 +83,9 @@ const Funcionarios = () => {
 
   return (
     <div className='text-white w-full p-[15px]'>Funcionarios
-      <div className='bg-mainColor w-[95%] grid mx-auto h-48 z-20 relative rounded-[15px]'></div>
+      <div className='bg-mainColor w-[95%] grid mx-auto h-48 z-20 relative rounded-[15px]'>
+        <ModalButton type='Funcionário' action='adiciona' data={undefined} />
+      </div>
       <div className='relative -top-14 z-10'>
         <Table
           aria-label="Example table with custom cells"
