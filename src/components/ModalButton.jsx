@@ -4,7 +4,7 @@ import { EyeIcon } from '../components/icons/EyeIcon'
 import { DeleteIcon } from '../components/icons/DeleteIcon'
 import { EditIcon } from '../components/icons/EditIcon'
 import { IconButton } from '../components/icons/IconButton'
-import FuncionariosModalBody from "./InputsModal";
+import FuncionariosModalBody from "./functions/InputsModal";
 
 export default function ModalButton(props) {
 
