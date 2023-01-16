@@ -4,6 +4,7 @@ import { EyeIcon } from '../components/icons/EyeIcon'
 import { DeleteIcon } from '../components/icons/DeleteIcon'
 import { EditIcon } from '../components/icons/EditIcon'
 import { IconButton } from '../components/icons/IconButton'
+import FuncionariosModalBody from "./InputsModal";
 
 export default function ModalButton(props) {
 
@@ -11,41 +12,73 @@ export default function ModalButton(props) {
     const type = props.type
     const data = props.data
 
-  const [visible, setVisible] = React.useState(false);
-  const handler = () => setVisible(true);
+    const [visible, setVisible] = React.useState(false);
+    const handler = () => setVisible(true);
 
-  const closeHandler = () => {
-    setVisible(false);
-    console.log("closed");
+    const closeHandler = () => {
+        setVisible(false);
+        console.log("closed");
     };
     
     var icon
     var title
-    var button
+    var footer
 
     if (action == 'detalhes') {
         title = 'Detalhes do ' + type
-        button = ''
         icon = (
             <IconButton onClick={() => console.log("View user", data.id)}>
                 <EyeIcon size={20} fill="#979797" />
             </IconButton>
-        ) 
+        )
+        footer = (
+            <Modal.Footer>
+                <Button auto color="error" onPress={closeHandler}>Fechar</Button>    
+            </Modal.Footer>
+        )
     } else if (action == 'editar') {
         title = 'Editar ' + type
-        button = 'Atualizar'
         icon = (
             <IconButton onClick={() => console.log("Edit user", data.id)}>
                 <EditIcon size={20} fill="#979797" />
             </IconButton>
         )
-    } else {
+        footer = (
+            <Modal.Footer>
+                <Button auto color="error" onPress={closeHandler}>Fechar</Button>
+                <Button auto onPress={closeHandler}>Atualizar</Button>    
+            </Modal.Footer>
+        )
+    } else if(action == 'delete'){
         title = 'Tem certeza que deseja deletar esse ' + type + '?'
-        button = 'Deletar'
         icon = (
             <IconButton onClick={() => console.log("Delete user", data.id)}>
                 <DeleteIcon size={20} fill="#FF0080" />
             </IconButton>
+        )
+        footer = (
+            <Modal.Footer>
+                <Button auto color="error" onPress={closeHandler}>Fechar</Button>
+                <Button auto flat color="error" onPress={closeHandler}>Deletar</Button>    
+            </Modal.Footer>
+        )
+    } else {
+        title = 'Adicione um novo ' + type
+        icon = (
+            <div className="bg-white text-background px-4 py-2 rounded-lg font-semibold">+ {type}</div>
+        )
+        footer = (
+            <Modal.Footer>
+                <Button auto color="error" onPress={closeHandler}>Fechar</Button>
+                <Button auto onPress={closeHandler}>Criar</Button>    
+            </Modal.Footer>
+        )
+    }
+
+    var body
+    if (type == 'Funcionário') {
+        body = (
+            <FuncionariosModalBody footer={footer} action={action} data={data} />
         )
     }
 
@@ -65,40 +98,7 @@ export default function ModalButton(props) {
                 {title}
             </Text>
             </Modal.Header>
-            <Modal.Body>
-            <Input
-                clearable
-                bordered
-                fullWidth
-                color="primary"
-                size="lg"
-                placeholder="Email"
-            />
-            <Input
-                clearable
-                bordered
-                fullWidth
-                color="primary"
-                size="lg"
-                placeholder="Password"
-            />
-            {/* <Row justify="space-between">
-                <Checkbox>
-                <Text size={14}>Remember me</Text>
-                </Checkbox>
-                <Text size={14}>Forgot password?</Text>
-            </Row> */}
-            </Modal.Body>
-            <Modal.Footer>
-            <Button auto flat color="error" onPress={closeHandler}>
-                Close
-            </Button>
-            {button != '' ? (
-                <Button auto onPress={closeHandler}>
-                    {button}
-                </Button>    
-            ) : null }
-            </Modal.Footer>
+            {body}
         </Modal>
     </div>
   );
