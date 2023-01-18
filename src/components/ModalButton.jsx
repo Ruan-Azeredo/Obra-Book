@@ -65,11 +65,11 @@ export default function ModalButton(props) {
     } else {
         title = 'Adicione um novo ' + type
         icon = (
-            <div className="bg-white text-background px-4 py-[2px] rounded-lg font-semibold flex gap-2">
+            <div className="bg-white text-background px-4 py-[2px] rounded-lg font-medium flex gap-2 text-sm">
                 <span className="h-fit flex self-center">
                     Adicionar {type}
                 </span>
-                <span className="text-2xl h-fit flex self-center pb-1">
+                <span className="text-xl h-fit flex self-center">
                     +
                 </span>
             </div>

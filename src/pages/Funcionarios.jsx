@@ -83,7 +83,8 @@ const Funcionarios = () => {
   }
 
   return (
-    <div className='text-white w-full p-[15px]'>Funcionarios
+    <div className='text-white w-full p-[15px]'>
+      <div className='mx-7 my-5 text-lg font-medium'>Funcionarios</div>
       <HeaderFuncionarios data={data} />
       <div className='relative -top-14 z-10'>
         <Table
