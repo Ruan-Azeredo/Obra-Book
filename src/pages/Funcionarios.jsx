@@ -84,7 +84,7 @@ const Funcionarios = () => {
 
   return (
     <div className='text-white w-full p-[15px]'>Funcionarios
-      <HeaderFuncionarios/>
+      <HeaderFuncionarios data={data} />
       <div className='relative -top-14 z-10'>
         <Table
           aria-label="Example table with custom cells"
