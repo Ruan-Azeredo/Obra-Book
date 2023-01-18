@@ -1,5 +1,6 @@
 import { Col, Row, Table, Text, Tooltip, User } from '@nextui-org/react'
 import React from 'react'
+import HeaderFuncionarios from '../components/functions/HeaderCrud'
 import ModalButton from '../components/ModalButton'
 import { StyledBadge } from '../components/StyledBadge'
 import { funcionarios } from '../data'
@@ -83,9 +84,7 @@ const Funcionarios = () => {
 
   return (
     <div className='text-white w-full p-[15px]'>Funcionarios
-      <div className='bg-mainColor w-[95%] grid mx-auto h-48 z-20 relative rounded-[15px]'>
-        <ModalButton type='Funcionário' action='adiciona' data={undefined} />
-      </div>
+      <HeaderFuncionarios/>
       <div className='relative -top-14 z-10'>
         <Table
           aria-label="Example table with custom cells"
