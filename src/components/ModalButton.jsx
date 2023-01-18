@@ -65,7 +65,14 @@ export default function ModalButton(props) {
     } else {
         title = 'Adicione um novo ' + type
         icon = (
-            <div className="bg-white text-background px-4 py-2 rounded-lg font-semibold">+ {type}</div>
+            <div className="bg-white text-background px-4 py-[2px] rounded-lg font-semibold flex gap-2">
+                <span className="h-fit flex self-center">
+                    Adicionar {type}
+                </span>
+                <span className="text-2xl h-fit flex self-center pb-1">
+                    +
+                </span>
+            </div>
         )
         footer = (
             <Modal.Footer>
