@@ -6,7 +6,7 @@ export const funcionarios = [
         phone: '(27) 9962-7180',
         type: 'Pedreiro',
         salary: '120',
-        status: 'Ativo',
+        status: true,
     },
     {
         id: 2,
@@ -15,7 +15,7 @@ export const funcionarios = [
         phone: '(27) 9962-7890',
         type: 'Ajudante',
         salary: '90',
-        status: 'Desativo',
+        status: false,
     },
     {
         id: 3,
@@ -24,6 +24,6 @@ export const funcionarios = [
         phone: '(27) 9964-7901',
         type: 'Pintor',
         salary: '130',
-        status: 'Ativo',
+        status: true,
     }
 ]
