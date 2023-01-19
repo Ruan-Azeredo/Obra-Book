@@ -54,8 +54,10 @@ const Funcionarios = () => {
           </Col>
         )
       case 'status':
+        var state
+        data.status == true ? state = 'Ativo' : state = 'Desativo'
         return (
-          <StyledBadge type={data.status}>{data.status}</StyledBadge>
+          <StyledBadge type={state}>{state}</StyledBadge>
         )
       case "actions":
         return (

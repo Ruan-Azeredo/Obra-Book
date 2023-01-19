@@ -7,7 +7,7 @@ export default function HeaderFuncionarios(props) {
 
     data.map(item => {
         qtTotal++
-        if(item.status == 'Ativo'){qtActive++}
+        if(item.status){qtActive++}
     })
 
     return (

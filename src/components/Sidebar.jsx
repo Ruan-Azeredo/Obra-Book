@@ -14,6 +14,11 @@ const items = [
 const Sidebar = () => {
   return (
     <div className='flex flex-col sidebar'>
+      <div className='font-bold text-3xl text-gray-white flex flex-col justify-center mx-auto'>
+        <div>ObraBook</div>
+        <div className='font-light text-xs'>Dashboard</div>
+      </div>
+        <div className='h-[2px] bg-white mt-2 w-48 mx-auto'></div>
       {items.map(item => (
         <NavLink to={item.link}
         className={({isActive}) => isActive ? 'bg-white text-background item' : 'text-white item'}
@@ -26,7 +31,7 @@ const Sidebar = () => {
         .sidebar{
           margin: 15px;
           background: var(--mainColor);
-          padding: 150px 15px 15px 15px;
+          padding: 25px 15px 15px 15px;
           display: flex;
           height: calc(100vh - 30px);
           border-radius: 30px;
