@@ -99,6 +99,7 @@ export default function ModalButton(props) {
             aria-labelledby="modal-title"
             open={visible}
             onClose={closeHandler}
+            width="600px"
         >
             <Modal.Header>
             <Text id="modal-title" b size={18}>
