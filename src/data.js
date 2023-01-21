@@ -34,3 +34,67 @@ export const funcionarios = [
         status: true,
     }
 ]
+
+export const obras = [
+    {
+        id: 1,
+        client_id: 1,
+        client_name: 'Ramon',
+        name: 'Obra Ramon'
+    }
+]
+
+export const dias = [
+    {
+        date: '12/10/2021'
+    },
+    {
+        date: '13/10/2021'
+    }
+]
+
+export const acaoFuncionarios = [
+    {
+        id: 1,
+        employee_id: 1,
+        employee_name: 'Ruan',
+        construction_id: 1,
+        construction_name: 'Casa Ramon',
+        date: '12/10/2021',
+        description: 'Lorem inpsum, ...'
+    },
+    {
+        id: 2,
+        employee_id: 1,
+        employee_name: 'Ruan',
+        construction_id: 1,
+        construction_name: 'Casa Ramon',
+        date: '13/10/2021',
+        description: 'Lorem inpsum, ...'
+    }
+]
+
+export const acaoFerramentas = [
+    {
+        id: 1,
+        tool_id: 1,
+        tool_name: 'Martelete',
+        construction_id: 1,
+        construction_name: 'Casa Ramon',
+        date: '12/10/2021',
+        amount: 2
+    }
+]
+
+export const acaoMateriais = [
+    {
+        id: 1,
+        material_id: 1,
+        material_name: 'Areia',
+        construction_id: 1,
+        construction_name: 'Casa Ramon',
+        date: '12/10/2021',
+        amount: 200,
+        unit: 'kg'
+    }
+]
