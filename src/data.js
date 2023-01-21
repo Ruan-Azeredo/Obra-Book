@@ -35,13 +35,48 @@ export const funcionarios = [
     }
 ]
 
+export const ferramentas = [
+    {
+        id: 1,
+        name: 'Martelete',
+        brand: 'Makita',
+        price: 3200,
+        avarage_life: 30,
+        provider: 'Brasão Enhenaria'
+    }
+]
+
+export const materias = [
+    {
+        id: 1,
+        name: 'Areia',
+        price: 10,
+        unit_of_measure_price: 'Kg'
+    }
+]
+
 export const obras = [
     {
         id: 1,
         client_id: 1,
         client_name: 'Ramon',
-        name: 'Obra Ramon'
-    }
+        name: 'Casa Ramon',
+        type: 'House'
+    },
+    {
+        id: 2,
+        client_id: 1,
+        client_name: 'Ramon',
+        name: 'Predio Ramon',
+        type: 'Building'
+    },
+    {
+        id: 3,
+        client_id: 1,
+        client_name: 'Ramon',
+        name: 'Reforma Ramon',
+        type: 'Remodeling'
+    },
 ]
 
 export const dias = [
