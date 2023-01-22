@@ -1,12 +1,13 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { archiveIcon, chartIcon, documentChartIcon, documentIcon, groupIcon, wrenchIcon } from './icons'
+import { archiveIcon, chartIcon, documentChartIcon, documentIcon, groupIcon, users, wrenchIcon } from './icons'
 
 const items = [
   { link: '/dashboard', name: 'Dashboard', icon: chartIcon },
   { link: '/funcionarios', name: 'Funcionários', icon: groupIcon },
   { link: '/ferramentas', name: 'Ferramentas', icon: wrenchIcon },
   { link: '/materiais', name: 'Materiais', icon: archiveIcon },
+  { link: '/clientes', name: 'Clientes', icon: users },
   { link: '/planejamento', name: 'Planejamento', icon: documentIcon },
   { link: '/relatorio', name: 'Relatorio', icon: documentChartIcon }
 ]
