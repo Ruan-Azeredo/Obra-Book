@@ -46,7 +46,7 @@ export const ferramentas = [
     }
 ]
 
-export const materias = [
+export const materiais = [
     {
         id: 1,
         name: 'Areia',
