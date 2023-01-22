@@ -79,6 +79,15 @@ export const obras = [
     },
 ]
 
+export const clientes = [
+    {
+        id: 1,
+        name: 'Ramon',
+        cpf: '167.300.695-08',
+        phoneNo: '(27) 99602-5732'
+    }
+]
+
 export const dias = [
     {
         date: '12/10/2021'
