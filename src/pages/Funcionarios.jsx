@@ -1,6 +1,6 @@
 import { Col, Row, Table, Text, Tooltip, User } from '@nextui-org/react'
 import React from 'react'
-import HeaderFuncionarios from '../components/functions/HeaderCrud'
+import { HeaderFuncionarios } from '../components/functions/HeaderCrud'
 import ModalButton from '../components/ModalButton'
 import { StyledBadge } from '../components/StyledBadge'
 import { funcionarios } from '../data'
