@@ -7,7 +7,7 @@ const items = [
   { link: '/funcionarios', name: 'Funcionários', icon: groupIcon },
   { link: '/ferramentas', name: 'Ferramentas', icon: wrenchIcon },
   { link: '/materiais', name: 'Materiais', icon: archiveIcon },
-  { link: '/clientes', name: 'Clientes', icon: users },
+  // { link: '/clientes', name: 'Clientes', icon: users },
   { link: '/planejamento', name: 'Planejamento', icon: documentIcon },
   { link: '/relatorio', name: 'Relatorio', icon: documentChartIcon }
 ]
