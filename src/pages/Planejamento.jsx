@@ -13,10 +13,9 @@ const Planejamento = () => {
         <div className='w-6/12'>
           {dias.map(itemDias => (
             <div key={itemDias}>
-              oii
               <div>
                 {obras.map(item => (
-                <div key={item}>
+                <div key={item} className='mb-6'>
                   <CardDayObra data={item} dia={itemDias} />
                 </div>
               ))}
@@ -29,13 +28,13 @@ const Planejamento = () => {
             <ModalButton type='Funcionário' action='adicionaAcao' data={undefined}/>
             {acaoFuncionarios.map(item => (
               <div className='mb-4'>
-                <Card isHoverable variant="bordered" css={{ w: "160px", padding: "8px", background: "var(--darkGray)"}}>
+                <Card isHoverable variant="bordered" css={{ w: "160px", padding: "8px", background: "var(--darkGray)", border: "none"}}>
                     <div className='w-fit mx-auto'>{groupIcon}</div>
                     <div className='mt-2'>
                       <div className='font-light text-sm'>
                         <div className='flex justify-between'>
                           <div className='font-medium'>{item.employee_name}</div>
-                          <div className='text-gray-300'>{item.date}</div>
+                          <div className='text-gray-400'>{item.date}</div>
                         </div>
                         <div className='mt-2'>{item.construction_name}</div>
                       </div>
@@ -49,13 +48,13 @@ const Planejamento = () => {
           <ModalButton type='Ferramentas' action='adicionaAcao' data={undefined}/>
             {acaoFerramentas.map(item => (
               <div className='mb-4'>
-                <Card isHoverable variant="bordered" css={{ w: "160px", padding: "8px", background: "var(--darkGray)"}}>
+                <Card isHoverable variant="bordered" css={{ w: "160px", padding: "8px", background: "var(--darkGray)", border: "none"}}>
                     <div className='w-fit mx-auto'>{wrenchIcon}</div>
                     <div className='mt-2'>
                       <div className='font-light text-sm'>
                         <div className='flex justify-between'>
                           <div className='font-medium'>{item.employee_name}</div>
-                          <div className='text-gray-300'>{item.date}</div>
+                          <div className='text-gray-400'>{item.date}</div>
                         </div>
                         <div className='mt-2'>{item.construction_name}</div>
                       </div>
@@ -69,13 +68,13 @@ const Planejamento = () => {
           <ModalButton type='Materias' action='adicionaAcao' data={undefined}/>
             {acaoMateriais.map(item => (
               <div className='mb-4'>
-                <Card isHoverable variant="bordered" css={{ w: "160px", padding: "8px", background: "var(--darkGray)"}}>
+                <Card isHoverable variant="bordered" css={{ w: "160px", padding: "8px", background: "var(--darkGray)", border: "none"}}>
                     <div className='w-fit mx-auto'>{archiveIcon}</div>
                     <div className='mt-2'>
                       <div className='font-light text-sm'>
                         <div className='flex justify-between'>
                           <div className='font-medium'>{item.employee_name}</div>
-                          <div className='text-gray-300'>{item.date}</div>
+                          <div className='text-gray-400'>{item.date}</div>
                         </div>
                         <div className='mt-2'>{item.construction_name}</div>
                       </div>
