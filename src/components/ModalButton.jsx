@@ -4,7 +4,7 @@ import { EyeIcon } from '../components/icons/EyeIcon'
 import { DeleteIcon } from '../components/icons/DeleteIcon'
 import { EditIcon } from '../components/icons/EditIcon'
 import { IconButton } from '../components/icons/IconButton'
-import FuncionariosModalBody from "./functions/InputsModais";
+import { FuncionariosModalBody, AcaoFuncionariosModalBody, FerramentasModalBody, MateriaisModalBody } from "./functions/InputsModais";
 
 export default function ModalButton(props) {
 
@@ -62,7 +62,7 @@ export default function ModalButton(props) {
                 <Button auto flat color="error" onPress={closeHandler}>Deletar</Button>    
             </Modal.Footer>
         )
-    } else {
+    } else if(action == 'adiciona'){
         title = 'Adicione um novo ' + type
         icon = (
             <div className="bg-white text-background px-4 py-[2px] rounded-lg font-medium flex gap-2 text-sm">
@@ -80,12 +80,54 @@ export default function ModalButton(props) {
                 <Button auto onPress={closeHandler}>Criar</Button>    
             </Modal.Footer>
         )
+    } else if (action == 'adicionaAcao') {
+        title = 'Adicione uma ação de ' + type
+        icon = (
+            <div className="bg-mainColor text-white mb-4 px-2 py-1 rounded-lg font-base flex gap-1 text-sm">
+                <span className=" h-fit flex self-center">
+                    +
+                </span>
+                <span className="h-fit flex self-center">
+                    Ação {type}
+                </span>
+            </div>
+        )
+        footer = (
+            <Modal.Footer>
+                <Button auto color="error" onPress={closeHandler}>Fechar</Button>
+                <Button auto onPress={closeHandler}>Criar</Button>    
+            </Modal.Footer>
+        )
     }
 
     var body
-    if (type == 'Funcionário') {
+    if (type == 'Funcionário' && action == 'adiciona' ||
+        type == 'Funcionário' && action == 'detalhes' ||
+        type == 'Funcionário' && action == 'editar' ||
+        type == 'Funcionário' && action == 'delete') {
         body = (
             <FuncionariosModalBody footer={footer} action={action} data={data} />
+        )
+
+    } else if (type == 'Ferramenta' && action == 'adiciona' ||
+        type == 'Ferramenta' && action == 'detalhes' ||
+        type == 'Ferramenta' && action == 'editar' ||
+        type == 'Ferramenta' && action == 'delete') {
+        body = (
+            <FerramentasModalBody footer={footer} action={action} data={data} />
+        )
+
+    } else if (type == 'Material' && action == 'adiciona' ||
+        type == 'Material' && action == 'detalhes' ||
+        type == 'Material' && action == 'editar' ||
+        type == 'Material' && action == 'delete') {
+        body = (
+            <MateriaisModalBody footer={footer} action={action} data={data} />
+        )
+
+    } else if (type == 'Funcionário' && action == 'adicionaAcao') {
+        body = (
+            <AcaoFuncionariosModalBody footer={footer} action={action} data={data} />
         )
     }
 
