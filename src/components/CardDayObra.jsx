@@ -30,14 +30,15 @@ const CardDayObra = (props) => {
     })
 
     var hidden
-    if (materiaisPerDay == []) {
+
+    if (funcionariosPerDay[0] == undefined && ferramentasPerDay[0] == undefined && materiaisPerDay[0] == undefined) {
         hidden = 'hidden'
     }
 
     var icon = null
-    if (typeBuilding == 'House') {
+    if (typeBuilding == 'Casa') {
         icon = homeModern
-    } else if (typeBuilding == 'Building') {
+    } else if (typeBuilding == 'Predio') {
         icon = buildingOffice
     } else {
         icon = buildingLibrary
@@ -57,7 +58,7 @@ const CardDayObra = (props) => {
                     <div className='flex justify-between'>
                         <div>
                             {funcionariosPerDay.map(item => (
-                                <div className='bg-mainColor rounded-full px-3'>{item.employee_name}</div>
+                                <div className='bg-mainColor rounded-full px-3 mb-4'>{item.employee_name}</div>
                             ))}
                         </div>
                         <div>
