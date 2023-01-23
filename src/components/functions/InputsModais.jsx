@@ -1,5 +1,5 @@
 import { Input, Modal, Switch, Textarea } from "@nextui-org/react"
-import { funcionarios, obras } from "../../data"
+import { ferramentas, funcionarios, materiais, obras } from "../../data"
 import ListBoxComponent from "../ListBoxComponent"
 
 export function FuncionariosModalBody(props) {
@@ -299,7 +299,81 @@ export function AcaoFuncionariosModalBody(props) {
             </div>
                 <div className="mt-8 z-10">
                     <Textarea
-                        initialValue={data == undefined ? null : data.unit_of_measure_price}
+                        initialValue={data == undefined ? null : data.description}
+                        readOnly={lock}
+                        bordered
+                        fullWidth
+                        required
+                        color="primary"
+                        size="lg"
+                        labelPlaceholder="Descrição"
+                    />
+                </div>
+                
+            </Modal.Body>
+            {footer}
+        </div>
+    )
+}
+
+export function AcaoFerramentasModalBody(props) {
+    const data = props.data
+    const footer = props.footer
+    const action = props.action
+
+    var lock
+    if (action == 'detalhes') { lock = true }
+
+    var hidden
+    if (action == 'delete') { hidden = 'hidden' }
+
+    return (
+        <div>
+            <Modal.Body>
+            <div className={`${hidden} pt-7 flex gap-3 z-50`}>
+                <ListBoxComponent items={ferramentas} />
+                <ListBoxComponent items={obras} />
+            </div>
+                <div className="mt-8 z-10">
+                    <Textarea
+                        initialValue={data == undefined ? null : data.description}
+                        readOnly={lock}
+                        bordered
+                        fullWidth
+                        required
+                        color="primary"
+                        size="lg"
+                        labelPlaceholder="Descrição"
+                    />
+                </div>
+                
+            </Modal.Body>
+            {footer}
+        </div>
+    )
+}
+
+export function AcaoMateriaisModalBody(props) {
+    const data = props.data
+    const footer = props.footer
+    const action = props.action
+
+    var lock
+    if (action == 'detalhes') { lock = true }
+
+    var hidden
+    if (action == 'delete') { hidden = 'hidden' }
+
+    return (
+        <div>
+            <Modal.Body>
+            <div className={`${hidden} pt-7 flex gap-3 z-50`}>
+                <ListBoxComponent items={materiais} />
+                <ListBoxComponent items={obras} />
+            </div>
+                <div className="mt-8 z-10">
+                    <Textarea
+                        initialValue={data == undefined ? null : data.description}
                         readOnly={lock}
                         bordered
                         fullWidth
