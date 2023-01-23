@@ -1,12 +1,13 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { archiveIcon, chartIcon, documentChartIcon, documentIcon, groupIcon, users, wrenchIcon } from './icons'
+import { archiveIcon, chartIcon, documentChartIcon, documentIcon, groupIcon, home, users, wrenchIcon } from './icons'
 
 const items = [
-  { link: '/dashboard', name: 'Dashboard', icon: chartIcon },
+  // { link: '/dashboard', name: 'Dashboard', icon: chartIcon },
   { link: '/funcionarios', name: 'Funcionários', icon: groupIcon },
   { link: '/ferramentas', name: 'Ferramentas', icon: wrenchIcon },
   { link: '/materiais', name: 'Materiais', icon: archiveIcon },
+  { link: '/obras', name: 'Obras', icon: home },
   // { link: '/clientes', name: 'Clientes', icon: users },
   { link: '/planejamento', name: 'Planejamento', icon: documentIcon },
   { link: '/relatorio', name: 'Relatorio', icon: documentChartIcon }
@@ -14,7 +15,7 @@ const items = [
 
 const Sidebar = () => {
   return (
-    <div className='flex flex-col sidebar'>
+    <div className='flex flex-col sidebar sticky top-[15px]'>
       <div className='font-bold text-3xl text-gray-white flex flex-col justify-center mx-auto'>
         <div>ObraBook</div>
         <div className='font-light text-xs'>Dashboard</div>
