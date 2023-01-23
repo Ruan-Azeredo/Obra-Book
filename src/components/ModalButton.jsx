@@ -4,7 +4,7 @@ import { EyeIcon } from '../components/icons/EyeIcon'
 import { DeleteIcon } from '../components/icons/DeleteIcon'
 import { EditIcon } from '../components/icons/EditIcon'
 import { IconButton } from '../components/icons/IconButton'
-import { FuncionariosModalBody, AcaoFuncionariosModalBody, FerramentasModalBody, MateriaisModalBody } from "./functions/InputsModais";
+import { FuncionariosModalBody, AcaoFuncionariosModalBody, FerramentasModalBody, MateriaisModalBody, AcaoFerramentasModalBody, AcaoMateriaisModalBody } from "./functions/InputsModais";
 
 export default function ModalButton(props) {
 
@@ -128,6 +128,14 @@ export default function ModalButton(props) {
     } else if (type == 'Funcionário' && action == 'adicionaAcao') {
         body = (
             <AcaoFuncionariosModalBody footer={footer} action={action} data={data} />
+        )
+    } else if (type == 'Ferramenta' && action == 'adicionaAcao') {
+        body = (
+            <AcaoFerramentasModalBody footer={footer} action={action} data={data} />
+        )
+    } else if (type == 'Material' && action == 'adicionaAcao') {
+        body = (
+            <AcaoMateriaisModalBody footer={footer} action={action} data={data} />
         )
     }
 
