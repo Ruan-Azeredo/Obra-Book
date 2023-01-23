@@ -1,4 +1,4 @@
-import { Input, Modal, Switch } from "@nextui-org/react"
+import { Input, Modal, Switch, Textarea } from "@nextui-org/react"
 import { funcionarios, obras } from "../../data"
 import ListBoxComponent from "../ListBoxComponent"
 
@@ -293,9 +293,22 @@ export function AcaoFuncionariosModalBody(props) {
     return (
         <div>
             <Modal.Body>
-                
+            <div className={`${hidden} pt-7 flex gap-3 z-50`}>
                 <ListBoxComponent items={funcionarios} />
                 <ListBoxComponent items={obras} />
+            </div>
+                <div className="mt-8 z-10">
+                    <Textarea
+                        initialValue={data == undefined ? null : data.unit_of_measure_price}
+                        readOnly={lock}
+                        bordered
+                        fullWidth
+                        required
+                        color="primary"
+                        size="lg"
+                        labelPlaceholder="Descrição"
+                    />
+                </div>
                 
             </Modal.Body>
             {footer}
