@@ -1,10 +1,21 @@
 import { Col, Row, Table, Text, Tooltip} from '@nextui-org/react'
+import axios from 'axios'
 import React from 'react'
+import { useEffect } from 'react'
+import { useState } from 'react'
 import { HeaderFerramentas } from '../components/functions/HeaderCrud'
 import ModalButton from '../components/ModalButton'
 import { ferramentas } from '../data'
 
 const Feramentas = () => {
+
+  const [datas, setDatas] = useState()
+  useEffect(() => {
+    axios.get("http://localhost:8080/api/tools")
+    .then((response) => setDatas(response.data))
+  })
+  console.log(datas)
+
   const columns = [
     { name: 'Nome', key: 'name' },
     { name: 'Marca', key: 'marca' },
@@ -28,7 +39,7 @@ const Feramentas = () => {
         )
       case 'vidaMedia':
         return (
-          <div className='text-sm'>{data.avarage_life} meses de uso</div>
+          <div className='text-sm'>{data.averageLifeSpan} meses de uso</div>
         )
       case 'preco':
         return (
