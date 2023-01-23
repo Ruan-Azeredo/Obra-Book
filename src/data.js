@@ -32,6 +32,24 @@ export const funcionarios = [
         type: 'Pintor',
         salary: '130',
         status: true,
+    },
+    {
+        id: 4,
+        name: 'Vitor',
+        lastName: 'Santos',
+        phone: '(27) 92344-7901',
+        type: 'Pintor',
+        salary: '120',
+        status: true,
+    },
+    {
+        id: 4,
+        name: 'Marcos',
+        lastName: 'Barros',
+        phone: '(27) 99004-7342',
+        type: 'Pedreiro',
+        salary: '110',
+        status: false,
     }
 ]
 
@@ -52,6 +70,24 @@ export const materiais = [
         name: 'Areia',
         price: 10,
         unit_of_measure_price: 'Kg'
+    },
+    {
+        id: 2,
+        name: 'Tijolo',
+        price: 8,
+        unit_of_measure_price: 'Dezena'
+    },
+    {
+        id: 3,
+        name: 'Cimento',
+        price: 40,
+        unit_of_measure_price: 'Saco'
+    },
+    {
+        id: 4,
+        name: 'Brita',
+        price: 40,
+        unit_of_measure_price: 'Kg'
     }
 ]
 
@@ -61,31 +97,31 @@ export const obras = [
         client_id: 1,
         client_name: 'Ramon',
         name: 'Casa Ramon',
-        type: 'House'
+        type: 'Casa'
     },
     {
         id: 2,
         client_id: 1,
         client_name: 'Ramon',
         name: 'Predio Ramon',
-        type: 'Building'
+        type: 'Predio'
     },
     {
         id: 3,
         client_id: 1,
         client_name: 'Ramon',
         name: 'Reforma Ramon',
-        type: 'Remodeling'
+        type: 'Reforma'
     },
 ]
 
 export const clientes = [
     {
         id: 1,
-        name: 'Ramon',
+        name: 'Ramon Gonçalves',
         cpf: '167.300.695-08',
         phoneNo: '(27) 99602-5732'
-    }
+    },
 ]
 
 export const dias = [
@@ -111,6 +147,15 @@ export const acaoFuncionarios = [
         id: 2,
         employee_id: 1,
         employee_name: 'Ruan',
+        construction_id: 1,
+        construction_name: 'Casa Ramon',
+        date: '13/10/2021',
+        description: 'Lorem inpsum, ...'
+    },
+    {
+        id: 3,
+        employee_id: 2,
+        employee_name: 'Lazaro',
         construction_id: 1,
         construction_name: 'Casa Ramon',
         date: '13/10/2021',
