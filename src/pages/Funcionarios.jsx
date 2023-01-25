@@ -24,8 +24,8 @@ const Funcionarios = () => {
       case 'name':
         return (
           <User
-            src={`https://ui-avatars.com/api/?name=${data.name}+${data.lastName}`}
-            name={data.name}
+            src={`https://ui-avatars.com/api/?name=${data.firstName}+${data.lastName}`}
+            name={data.firstName}
             description={data.lastName}
             css={{
               padding: "4px 0"
@@ -34,7 +34,7 @@ const Funcionarios = () => {
         )
       case 'celular':
         return (
-          <div className='text-sm'>{data.phone}</div>
+          <div className='text-sm'>{data.phoneNo}</div>
         )
       case 'tipo':
         return (
@@ -46,7 +46,7 @@ const Funcionarios = () => {
         return (
           <Col>
             <Row>
-              <Text b size={16} css={{ tt: "capitalize" }}>R$ {data.salary},00</Text>
+              <Text b size={16} css={{ tt: "capitalize" }}>R$ {data.dailyWage},00</Text>
             </Row>
             <Row>
               <Text b size={13} css={{ tt: "capitalize", color: "$accents7" }}>por dia</Text>
