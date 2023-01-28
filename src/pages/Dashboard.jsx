@@ -1,6 +1,5 @@
 import React from 'react'
 import { useState } from 'react'
-import Donut from '../components/charts/Donut'
 import { funcionarios } from '../data'
 
 const Dashboard = () => {
@@ -21,7 +20,6 @@ const Dashboard = () => {
           <div className='w-[320px] text-sm bg-mainColor rounded-[15px] p-3'>Ola Engenheiro(a), aqui temos algumas métricas que lhe podem ser uteis.</div>
           <div className='mt-5'>
             <div>Fases das Obras</div>
-            {/* <Donut/> */}
           </div>
         </div>
         <div>
