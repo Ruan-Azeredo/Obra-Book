@@ -5,16 +5,15 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { HeaderFerramentas } from '../components/functions/HeaderCrud'
 import ModalButton from '../components/ModalButton'
-import { ferramentas } from '../data'
+import { ferramentas, funcionarios } from '../data'
 
 const Feramentas = () => {
 
-  const [datas, setDatas] = useState()
+  const [data, setData] = useState([])
   useEffect(() => {
     axios.get("http://localhost:8080/api/tools")
-    .then((response) => setDatas(response.data))
-  })
-  console.log(datas)
+    .then((response) => setData(response.data))
+  }, [])
 
   const columns = [
     { name: 'Nome', key: 'name' },
@@ -23,8 +22,6 @@ const Feramentas = () => {
     { name: 'Preço', key: 'preco' },
     {name: 'Actions', key: 'actions'}
   ]
-
-  const data = ferramentas
 
   const renderCell = (data, columnKey) => {
     const cellValue = data[columnKey]
