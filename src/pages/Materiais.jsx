@@ -9,7 +9,8 @@ const Materiais = () => {
   const columns = [
     { name: 'Nome', key: 'name' },
     { name: 'Preço', key: 'preco' },
-    {name: 'Unidade /Preço', key: 'unidade'},
+    { name: 'Unidade /Preço', key: 'unidade' },
+    { name: 'Qauantidade', key: 'quantidade'},
     { name: 'Actions', key: 'actions' }
   ]
 
@@ -26,7 +27,7 @@ const Materiais = () => {
         return (
           <Col>
             <Row>
-              <Text b size={16} css={{ tt: "capitalize" }}>R$ {data.price},00 </Text>
+              <Text b size={16} css={{ tt: "capitalize" }}>R$ {data.pricePerKg},00 </Text>
             </Row>
           </Col>
         )
@@ -35,7 +36,15 @@ const Materiais = () => {
           <Col>
             <Row css={{gap: "5px"}}>
               <Text b size={13} css={{ tt: "capitalize" }}>por</Text>
-              <Text b size={13} css={{ tt: "capitalize", color: "var(--mainColor)" }}>{data.unit_of_measure_price}</Text>
+              <Text b size={13} css={{ tt: "capitalize", color: "var(--mainColor)" }}>Kg</Text>
+            </Row>
+          </Col>
+        )
+      case "quantidade":
+        return (
+          <Col>
+            <Row css={{gap: "5px"}}>
+              <Text b size={13} css={{ tt: "capitalize"}}>{data.quantity}</Text>
             </Row>
           </Col>
         )
