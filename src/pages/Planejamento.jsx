@@ -45,7 +45,7 @@ const Planejamento = () => {
           </div>
         
           <div className='flex flex-col'>
-          <ModalButton type='Ferramentas' action='adicionaAcao' data={undefined}/>
+          <ModalButton type='Ferramenta' action='adicionaAcao' data={undefined}/>
             {acaoFerramentas.map(item => (
               <div className='mb-4'>
                 <Card isHoverable variant="bordered" css={{ w: "160px", padding: "8px", background: "var(--darkGray)", border: "none"}}>
@@ -65,7 +65,7 @@ const Planejamento = () => {
           </div>
         
           <div className='flex flex-col'>
-          <ModalButton type='Materias' action='adicionaAcao' data={undefined}/>
+          <ModalButton type='Material' action='adicionaAcao' data={undefined}/>
             {acaoMateriais.map(item => (
               <div className='mb-4'>
                 <Card isHoverable variant="bordered" css={{ w: "160px", padding: "8px", background: "var(--darkGray)", border: "none"}}>
