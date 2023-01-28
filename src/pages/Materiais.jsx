@@ -1,20 +1,26 @@
 import { Col, Row, Table, Text, Tooltip} from '@nextui-org/react'
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { HeaderMateriais } from '../components/functions/HeaderCrud'
 import ModalButton from '../components/ModalButton'
 import { materiais } from '../data'
 
 
 const Materiais = () => {
+
+  const [data, setData] = useState([])
+  useEffect(() => {
+    axios.get("http://localhost:8080/api/supplies")
+    .then((response) => setData(response.data))
+  }, [])
+
   const columns = [
     { name: 'Nome', key: 'name' },
     { name: 'Preço', key: 'preco' },
     { name: 'Unidade /Preço', key: 'unidade' },
-    { name: 'Qauantidade', key: 'quantidade'},
+    { name: 'Quantidade', key: 'quantidade'},
     { name: 'Actions', key: 'actions' }
   ]
-
-  const data = materiais
 
   const renderCell = (data, columnKey) => {
     const cellValue = data[columnKey]
