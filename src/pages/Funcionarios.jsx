@@ -1,11 +1,18 @@
 import { Col, Row, Table, Text, Tooltip, User } from '@nextui-org/react'
-import React from 'react'
+import axios from 'axios'
+import React, { useEffect, useState } from 'react'
 import { HeaderFuncionarios } from '../components/functions/HeaderCrud'
 import ModalButton from '../components/ModalButton'
 import { StyledBadge } from '../components/StyledBadge'
 import { funcionarios } from '../data'
 
 const Funcionarios = () => {
+
+  const [data, setData] = useState([])
+  useEffect(() => {
+    axios.get("http://localhost:8080/api/worker")
+    .then((response) => setData(response.data))
+  }, [])
 
   const columns = [
     { name: 'Nome', key: 'name' },
@@ -15,8 +22,6 @@ const Funcionarios = () => {
     { name: 'Status', key: 'status' },
     {name: 'Actions', key: 'actions'}
   ]
-
-  const data = funcionarios
 
   const renderCell = (data, columnKey) => {
     const cellValue = data[columnKey]
