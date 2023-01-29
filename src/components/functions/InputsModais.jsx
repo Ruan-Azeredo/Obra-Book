@@ -1,10 +1,15 @@
 import { Button, Input, Modal, Switch, Textarea } from "@nextui-org/react"
+import { useEffect } from "react"
+import { useContext } from "react"
 import { useState } from "react"
 import { workerPost } from "../../api/workerPost"
+import ObjecttContext from "../../contexts/ObjecttContext"
 import { ferramentas, funcionarios, materiais, obras } from "../../data"
 import ListBoxComponent from "../ListBoxComponent"
 
 export function FuncionariosModalBody(props) {
+    const { setObjecttGlobal } = useContext(ObjecttContext)
+
     const data = props.data
     const footer = props.footer
     const action = props.action
@@ -44,6 +49,11 @@ export function FuncionariosModalBody(props) {
         number: number,
         zip_code: zip_code
     }
+
+    useEffect(() => {
+        setObjecttGlobal(obj)
+    }, [firstName, lastName, dailyWage, phoneNo, cpf, age, type, status, isAssigned, district, street, number, zip_code])
+
 
     const handleValueListBox = (value) => {
         setStatus(value.value)
@@ -137,7 +147,7 @@ export function FuncionariosModalBody(props) {
                     labelPlaceholder="Tipo"
                     onChange={(event)=>setType(event.target.value)} 
                     />
-                    <ListBoxComponent lock={lock} items={[{ name: 'Ativo', value: 1 }, { name: 'Desativo', value: 0 }]} onValueChange={handleValueListBox} />
+                    <ListBoxComponent lock={lock} initialValue={data  == undefined ? null : data.status} items={[{ name: 'Ativo', value: 1 }, { name: 'Desativo', value: 0 }]} onValueChange={handleValueListBox} />
                 </div>
                 <div className={`${hidden} pt-2`}>Endereço</div>
                 <div className={`${hidden} pt-6 flex gap-3`}>
