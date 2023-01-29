@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment, useEffect, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { checkIcon, chevronUpDownIcon } from './icons'
 
@@ -6,6 +6,7 @@ export default function ListBoxComponent(props) {
   const items = props.items
   const lock = props.lock
   const [selected, setSelected] = useState(items[0])
+  props.onValueChange(selected)
 
   return (
     <div className="w-64">
