@@ -5,7 +5,12 @@ import { checkIcon, chevronUpDownIcon } from './icons'
 export default function ListBoxComponent(props) {
   const items = props.items
   const lock = props.lock
+  const initialValue = props.initialValue
   const [selected, setSelected] = useState(items[0])
+  useEffect(() => {
+    if (initialValue == 0) { setSelected(items[1]) }
+  }, [initialValue])
+
   props.onValueChange(selected)
 
   return (
