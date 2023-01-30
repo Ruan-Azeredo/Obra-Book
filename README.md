@@ -14,6 +14,8 @@ npm i @nextui-org/react
 
 ### CRUDs
 
+#### Pages
+
 Cada CRUD do sistema, possui uma estrutura padrão e que foi feita pensando para que fosse o mais facil/friendly possivel adicionar outras views e CRUDs, dessa forma, vou explicar um de exemplo.
 
 Em cada view, como na **Ferramentas.jsx** possui um estrutura parecida porem independente de tabela, esta tabela foi feita com Next UI e se baseando na propria da documentação.
@@ -37,6 +39,8 @@ const columns = [
     { name: 'Actions', key: 'actions' }
   ]
 ```
+
+Vale ressaltar que dentro das celulas, na ultima existem os componentes ModalButton, que será explicado posteriormente
 
 A função que renderiza as celulas da Tabela:
 ```JavaScript
@@ -89,9 +93,9 @@ const renderCell = (data, columnKey) => {
   }
 ```
 
-Dentro do **return()** tem o Header, que é um componente que é especifico de cada CRUD, alem da tabela, o <Table> que itera a **data**, e passa as columns definidas anteriormente.
+Dentro do **return()** tem o Header, que é um componente que é especifico de cada CRUD, alem da tabela, o < Table > que itera a **data**, e passa as columns definidas anteriormente.
 
-A <Table>:
+A < Table >:
 ```JavaScript
 <Table
     aria-label="Example table with custom cells"
@@ -130,3 +134,36 @@ A <Table>:
     </Table.Body>
 </Table>
 ```
+
+Finalizando a base do primeiro arquivo deste exemplo, Ferramentas.jsx, dentro deste arquivo, como nos dos outros CRUDs, temos componentes, que possuem outros componentes, e que serão explanados na sequencia.
+
+#### Header
+
+Todas as Headers são puxadas de um arquivo chamado HeaderCrud, que que possui varias funções, porem nenhuma *default*, continumando no exemplo do CRUD Ferramentas, temos a seguinte função:
+
+```JavaScript
+export function HeaderFerramentas(props) {
+    const data = props.data
+    var qtTotal = 0
+
+    data.map(item => {
+        qtTotal++
+    })
+
+    return (
+        <div className='bg-mainColor w-[95%] flex mx-auto z-20 relative rounded-[15px] justify-between'>
+            <div className="bg-white m-4 p-3 gap-4 flex text-center rounded-lg text-background">
+                <div className="text-start font-semibold flex h-fit self-center">Quantidade de Ferramentas:</div>
+                <div>
+                    <span className="text-3xl text-mainColor font-bold">{qtTotal}</span>
+                </div>
+            </div>
+            <div className='m-4'>
+                <ModalButton type='Ferramenta' action='adiciona' data={undefined}/>
+            </div>
+        </div>
+    )
+}
+```
+
+Cada função recebe recebe props, de onde basicamente será retirada a data, para que possa ser utilizada em qualquer informações que deve ficar evidente acima da < Table >, neste caso possui apenas a quantidade total de ferramente(a logica é feita neste componente). Também no Header, existe o botão de Adicionar de todos os CRUDs, que chama o componente ModalButton, e é importante ressaltar, que como ele vai acessar a função POST, ele não precisa de nehuma *data*, assim este parametro no header é passado como undefined 
