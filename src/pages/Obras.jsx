@@ -13,7 +13,7 @@ const Obras = () => {
   useEffect(() => {
     axios.get("http://localhost:8080/api/tools")
     .then((response) => setDatas(response.data))
-  })
+  }, [])
   console.log(datas)
 
   const columns = [
