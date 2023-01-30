@@ -1,15 +1,27 @@
 import { Input } from '@nextui-org/react'
 import React, { useState } from 'react'
+import { useContext } from 'react'
+import { NavLink } from 'react-router-dom'
+import ObjecttContext from '../contexts/ObjecttContext'
 
 const Login = () => {
-    const [namevalue, setNamevalue] = useState()
+    const { setEngineerId } = useContext(ObjecttContext)
+
+    // const [namevalue, setNamevalue] = useState()
     const [emailvalue, setEmailvalue] = useState()
     const [passwordvalue, setPasswordvalue] = useState()
 
-    const getName = (event) => setNamevalue(event.target.value)
+    // const getName = (event) => setNamevalue(event.target.value)
     const getEmail = (event) => setEmailvalue(event.target.value)
     const getPassword = (event) => setPasswordvalue(event.target.value)
-  return (
+
+    const auth = () => {
+        if (emailvalue == 'ruanazeredo@gmail.com' && passwordvalue == 'password') {
+            setEngineerId(true)
+        }
+    }
+
+    return (
     <div className={`flex h-screen items-center justify-center`}>
 
             <div className={`hidden md:block md:w-1/2 lg:w-2/3`}>
@@ -18,19 +30,21 @@ const Login = () => {
 
             <div className={`m-10 w-full mb:w-1/2 lg:w-1/3`}>
                 <div className={`mb-5`}>
-                    <h1 className={`text-3xl font-bold left-2 text-gray-800 relative`}>ObraBook</h1>
+                    <h1 className={`text-3xl font-bold left-2 text-gray-300 relative`}>ObraBook</h1>
                 </div>
 
                 <div className={`flex flex-col`}>
-                    <label>Nome</label>
-                    <Input type={'text'} onChange={getName} />
+                    {/* <label>Nome</label>
+                    <Input type={'text'} onChange={getName} /> */}
                     <label>Email</label>
                     <Input type={'email'} onChange={getEmail} />
                     <label>Senha</label>
                     <Input type={'password'} onChange={getPassword} />
                 </div>    
                 
-                <button className={`w-full bg-indigo-500 hover:bg-indigo-400 text-white rounded-lg px-4 py-3 mt-6`}>Entrar com Email e Senha</button>
+                <NavLink to='/funcionarios' onClick={auth}>
+                    <div className={`text-center w-full bg-mainColor hover:bg-indigo-500 text-white rounded-lg px-4 py-3 mt-6`}>Entrar com Email e Senha</div>
+                </NavLink>
 
                 <hr className={`my-6 border-gray-300 w-full`} />
             </div>
