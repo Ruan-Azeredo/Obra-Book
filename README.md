@@ -88,3 +88,45 @@ const renderCell = (data, columnKey) => {
     }
   }
 ```
+
+Dentro do **return()** tem o Header, que é um componente que é especifico de cada CRUD, alem da tabela, o <Table> que itera a **data**, e passa as columns definidas anteriormente.
+
+A <Table>:
+```JavaScript
+<Table
+    aria-label="Example table with custom cells"
+    css={{
+        height: "auto",
+        minWidth: "100%",
+        background: "var(--darkGray)"
+    }}
+    borderWeight="none"
+    headerLined={true}
+    lineWeight="none"
+    color='primary'
+>
+    <Table.Header columns={columns}>
+    {(column) => (
+        <Table.Column
+            key={column.key}
+            hideHeader={column.key === "actions"}
+            align={column.key === "actions" ? "center" : "start"}
+        >
+        {column.name}
+        </Table.Column>
+    )}
+    </Table.Header>
+    <Table.Body items={data}>
+    {(item) => (
+        <Table.Row>
+        {(columnKey) => (
+            <Table.Cell css={{
+            background: "var(--lightGray)",
+            
+            }}>{renderCell(item, columnKey)}</Table.Cell>
+        )}
+        </Table.Row>
+    )}
+    </Table.Body>
+</Table>
+```
