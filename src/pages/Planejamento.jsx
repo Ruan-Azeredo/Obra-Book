@@ -6,12 +6,33 @@ import ModalButton from '../components/ModalButton'
 import { acaoFuncionarios, obras, dias, acaoFerramentas, acaoMateriais } from '../data'
 
 const Planejamento = () => {
+
+  var days = []
+
+  acaoFuncionarios.map(item => {
+    if (!days.includes(item.data)) {
+      days.push(item.data)
+    }
+  })
+
+  acaoFerramentas.map(item => {
+    if (!days.includes(item.data)) {
+      days.push(item.data)
+    }
+  })
+
+  acaoMateriais.map(item => {
+    if (!days.includes(item.data)) {
+      days.push(item.data)
+    }
+  })
+
   return (
     <div className='text-white w-full p-[15px]'>
       <div className='mx-7 my-5 text-lg font-medium'>Planejamento</div>
       <div className='flex'>
         <div className='w-6/12'>
-          {dias.map(itemDias => (
+          {days.map(itemDias => (
             <div key={itemDias}>
               <div>
                 {obras.map(item => (
