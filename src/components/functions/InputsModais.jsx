@@ -14,6 +14,7 @@ export function FuncionariosModalBody(props) {
     const footer = props.footer
     const action = props.action
 
+    const [id, setId] = useState(data == undefined ? null : data.id);
     const [firstName, setFirstName] = useState(data == undefined ? null : data.firstName);
     const [lastName, setLastName] = useState(data == undefined ? null : data.lastName);
     const [dailyWage, setDailyWage] = useState(data == undefined ? null : data.dailyWage);
@@ -35,6 +36,7 @@ export function FuncionariosModalBody(props) {
     if (action == 'delete') { hidden = 'hidden' }
 
     let obj = {
+        id: id,
         firstName: firstName,
         lastName: lastName,
         dailyWage: dailyWage,
@@ -52,7 +54,7 @@ export function FuncionariosModalBody(props) {
 
     useEffect(() => {
         setObjecttGlobal(obj)
-    }, [firstName, lastName, dailyWage, phoneNo, cpf, age, type, status, isAssigned, district, street, number, zip_code])
+    }, [id, firstName, lastName, dailyWage, phoneNo, cpf, age, type, status, isAssigned, district, street, number, zip_code])
 
 
     const handleValueListBox = (value) => {
@@ -199,25 +201,44 @@ export function FuncionariosModalBody(props) {
                     />
                 </div>
             </Modal.Body>
-            <Button onClick={() => {
-                console.log(obj)
-                workerPost(obj)
-            }}>Console.log</Button>
             {footer}
         </div>
     )
 }
 
 export function FerramentasModalBody(props) {
+    const { setObjecttGlobal } = useContext(ObjecttContext)
+
     const data = props.data
     const footer = props.footer
     const action = props.action
+
+    const [id, setId] = useState(data == undefined ? null : data.id);
+    const [name, setName] = useState(data == undefined ? null : data.name);
+    const [brand, setBrand] = useState(data == undefined ? null : data.brand);
+    const [price, setPrice] = useState(data == undefined ? null : data.price);
+    const [averageLifeSpan, setaverageLifeSpan] = useState(data == undefined ? null : data.averageLifeSpan);
+    const [provider, setProvider] = useState(data == undefined ? null : data.provider);
+    console.log(averageLifeSpan)
 
     var lock
     if (action == 'detalhes') { lock = true }
 
     var hidden
     if (action == 'delete') { hidden = 'hidden' }
+
+    let obj = {
+        id: id,
+        name: name,
+        brand: brand,
+        price: price,
+        averageLifeSpan: averageLifeSpan,
+        provider: provider
+    }
+
+    useEffect(() => {
+        setObjecttGlobal(obj)
+    }, [id, name, brand, price, averageLifeSpan, provider])
 
     return (
         <div>
@@ -232,6 +253,7 @@ export function FerramentasModalBody(props) {
                     color="primary"
                     size="lg"
                     labelPlaceholder="Nome"  
+                    onChange={(event)=>setName(event.target.value)}
                     />
                     <Input
                     initialValue={data == undefined ? null : data.brand}
@@ -242,6 +264,7 @@ export function FerramentasModalBody(props) {
                     color="primary"
                     size="lg"
                     labelPlaceholder="Marca"  
+                    onChange={(event)=>setBrand(event.target.value)}
                     />
                 </div>
                 <div className={`${hidden} pt-7 flex gap-3`}>
@@ -255,9 +278,10 @@ export function FerramentasModalBody(props) {
                     color="primary"
                     size="lg"
                     labelPlaceholder="Preço"  
+                    onChange={(event)=>setPrice(event.target.value)}
                     />
                     <Input
-                    initialValue={data == undefined ? null : data.avarage_life}
+                    initialValue={data == undefined ? null : data.averageLifeSpan}
                     readOnly={lock}
                     bordered
                     fullWidth
@@ -265,6 +289,7 @@ export function FerramentasModalBody(props) {
                     color="primary"
                     size="lg"
                     labelPlaceholder="Vida Média"  
+                    onChange={(event)=>setaverageLifeSpan(event.target.value)}
                     />
                 </div>
                 <div className={`${hidden} pt-8 flex gap-3`}>
@@ -277,6 +302,7 @@ export function FerramentasModalBody(props) {
                     color="primary"
                     size="lg"
                     labelPlaceholder="Fornecedor"  
+                    onChange={(event)=>setProvider(event.target.value)}
                     />
                 </div>
             </Modal.Body>
@@ -286,15 +312,33 @@ export function FerramentasModalBody(props) {
 }
 
 export function MateriaisModalBody(props) {
+    const { setObjecttGlobal } = useContext(ObjecttContext)
+
     const data = props.data
     const footer = props.footer
     const action = props.action
+
+    const [id, setId] = useState(data == undefined ? null : data.id);
+    const [name, setName] = useState(data == undefined ? null : data.name);
+    const [quantity, setQuantity] = useState(data == undefined ? null : data.quantity);
+    const [pricePerKg, setPricePerKg] = useState(data == undefined ? null : data.pricePerKg);
 
     var lock
     if (action == 'detalhes') { lock = true }
 
     var hidden
     if (action == 'delete') { hidden = 'hidden' }
+
+    let obj = {
+        id: id,
+        name: name,
+        quantity: quantity,
+        pricePerKg: pricePerKg
+    }
+
+    useEffect(() => {
+        setObjecttGlobal(obj)
+    }, [id, name, quantity, pricePerKg])
 
     return (
         <div>
@@ -309,11 +353,12 @@ export function MateriaisModalBody(props) {
                     color="primary"
                     size="lg"
                     labelPlaceholder="Nome"  
+                    onChange={(event)=>setName(event.target.value)}
                     />
                 </div>
                 <div className={`${hidden} pt-7 flex gap-3`}>
                     <Input
-                    initialValue={data == undefined ? null : data.price}
+                    initialValue={data == undefined ? null : data.quantity}
                     readOnly={lock}
                     bordered
                     fullWidth
@@ -321,17 +366,79 @@ export function MateriaisModalBody(props) {
                     contentLeft="R$"
                     color="primary"
                     size="lg"
-                    labelPlaceholder="Preço"  
+                    labelPlaceholder="Quantidade"  
+                    onChange={(event)=>setQuantity(event.target.value)}
                     />
                     <Input
-                    initialValue={data == undefined ? null : data.unit_of_measure_price}
+                    initialValue={data == undefined ? null : data.pricePerKg}
                     readOnly={lock}
                     bordered
                     fullWidth
                     required
                     color="primary"
                     size="lg"
-                    labelPlaceholder="Unidade de Medida"  
+                    labelPlaceholder="Preço"  
+                    onChange={(event)=>setPricePerKg(event.target.value)}
+                    />
+                </div>
+            </Modal.Body>
+            {footer}
+        </div>
+    )
+}
+
+export function ObrasModalBody(props) {
+    const { setObjecttGlobal } = useContext(ObjecttContext)
+
+    const data = props.data
+    const footer = props.footer
+    const action = props.action
+
+    const [id, setId] = useState(data == undefined ? null : data.id);
+    const [name, setName] = useState(data == undefined ? null : data.name);
+    const [clientID, setClientID] = useState(data == undefined ? null : data.clientID);
+
+    var lock
+    if (action == 'detalhes') { lock = true }
+
+    var hidden
+    if (action == 'delete') { hidden = 'hidden' }
+
+    let obj = {
+        id: id,
+        name: name,
+        clientID: clientID
+    }
+
+    useEffect(() => {
+        setObjecttGlobal(obj)
+    }, [id, name, clientID])
+
+    return (
+        <div>
+            <Modal.Body>
+                <div className={`${hidden} pt-7 flex gap-3`}>
+                    <Input
+                    initialValue={data == undefined ? null : data.name}
+                    readOnly={lock}
+                    bordered
+                    fullWidth
+                    required
+                    color="primary"
+                    size="lg"
+                    labelPlaceholder="Nome"  
+                    onChange={(event)=>setName(event.target.value)}
+                    />
+                    <Input
+                    initialValue={data == undefined ? null : data.clientID}
+                    readOnly={lock}
+                    bordered
+                    fullWidth
+                    required
+                    color="primary"
+                    size="lg"
+                    labelPlaceholder="Cliente"  
+                    onChange={(event)=>setClientID(event.target.value)}
                     />
                 </div>
             </Modal.Body>
@@ -341,24 +448,69 @@ export function MateriaisModalBody(props) {
 }
 
 export function AcaoFuncionariosModalBody(props) {
+    const { setObjecttGlobal } = useContext(ObjecttContext)
+
     const data = props.data
     const footer = props.footer
     const action = props.action
+    const constructions = props.constructions
+    const array = props.array
+
+    const [id, setId] = useState(data == undefined ? null : data.id);
+    const [date, setDate] = useState(data == undefined ? null : data.data);
+    const [construction, setConstruction] = useState(data == undefined ? null : data.construction);
+    const [funcionario, setFuncionario] = useState(data == undefined ? null : data.funcionario);
+    const [description, setDescription] = useState(data == undefined ? null : data.description);
 
     var lock
-    if (action == 'detalhes') { lock = true }
+    if (action == 'detalhesAcao') { lock = true }
 
     var hidden
-    if (action == 'delete') { hidden = 'hidden' }
+    if (action == 'deleteAcao') { hidden = 'hidden' }
+
+    const handleValueListBoxConst = (value) => {
+        setConstruction(value.value)
+    }
+
+    const handleValueListBoxMater = (value) => {
+        setFuncionario(value.value)
+    }
+
+    let obj = {
+        id: id,
+        data: date,
+        constructionID: construction,
+        workerID: funcionario,
+        description: description,
+        isReport: props.isReport
+    }
+    console.log(date)
+
+    useEffect(() => {
+        setObjecttGlobal(obj)
+    }, [id, date, construction, funcionario, description])
 
     return (
         <div>
             <Modal.Body>
             <div className={`${hidden} pt-7 flex gap-3 z-50`}>
-                <ListBoxComponent items={funcionarios} />
-                <ListBoxComponent items={obras} />
-            </div>
-                <div className="mt-8 z-10">
+                <ListBoxComponent lock={lock} initialValue={data  == undefined ? null : data.constructionID} items={constructions} onValueChange={handleValueListBoxConst} />
+                <ListBoxComponent lock={lock} initialValue={data  == undefined ? null : data.workerID} items={array} onValueChange={handleValueListBoxMater} />
+                </div>
+                <div className={`${hidden} pt-7 flex gap-3`}>
+                    <Input
+                    initialValue={data == undefined ? null : data.data}
+                    readOnly={lock}
+                    bordered
+                    fullWidth
+                    required
+                    color="primary"
+                    size="lg"
+                    labelPlaceholder="Data"  
+                    onChange={(event)=>setDate(event.target.value)}
+                    />
+                </div>
+                <div className={`${hidden} mt-8 z-10`}>
                     <Textarea
                         initialValue={data == undefined ? null : data.description}
                         readOnly={lock}
@@ -368,6 +520,7 @@ export function AcaoFuncionariosModalBody(props) {
                         color="primary"
                         size="lg"
                         labelPlaceholder="Descrição"
+                        onChange={(event)=>setDescription(event.target.value)}
                     />
                 </div>
                 
@@ -378,24 +531,69 @@ export function AcaoFuncionariosModalBody(props) {
 }
 
 export function AcaoFerramentasModalBody(props) {
+    const { setObjecttGlobal } = useContext(ObjecttContext)
+
     const data = props.data
     const footer = props.footer
     const action = props.action
+    const constructions = props.constructions
+    const array = props.array
+
+    const [id, setId] = useState(data == undefined ? null : data.id);
+    const [date, setDate] = useState(data == undefined ? null : data.data);
+    const [construction, setConstruction] = useState(data == undefined ? null : data.construction);
+    const [ferramenta, setFerramenta] = useState(data == undefined ? null : data.ferramenta);
+    const [description, setDescription] = useState(data == undefined ? null : data.description);
 
     var lock
-    if (action == 'detalhes') { lock = true }
+    if (action == 'detalhesAcao') { lock = true }
 
     var hidden
-    if (action == 'delete') { hidden = 'hidden' }
+    if (action == 'deleteAcao') { hidden = 'hidden' }
+
+    const handleValueListBoxConst = (value) => {
+        setConstruction(value.value)
+    }
+
+    const handleValueListBoxMater = (value) => {
+        setFerramenta(value.value)
+    }
+
+    let obj = {
+        id: id,
+        data: date,
+        constructionID: construction,
+        toolID: ferramenta,
+        description: description,
+        isReport: props.isReport
+    }
+    console.log(date)
+
+    useEffect(() => {
+        setObjecttGlobal(obj)
+    }, [id, date, construction, ferramenta, description])
 
     return (
         <div>
             <Modal.Body>
             <div className={`${hidden} pt-7 flex gap-3 z-50`}>
-                <ListBoxComponent items={ferramentas} />
-                <ListBoxComponent items={obras} />
-            </div>
-                <div className="mt-8 z-10">
+                <ListBoxComponent lock={lock} initialValue={data  == undefined ? null : data.constructionID} items={constructions} onValueChange={handleValueListBoxConst} />
+                <ListBoxComponent lock={lock} initialValue={data  == undefined ? null : data.toolID} items={array} onValueChange={handleValueListBoxMater} />
+                </div>
+                <div className={`${hidden} pt-7 flex gap-3`}>
+                    <Input
+                    initialValue={data == undefined ? null : data.data}
+                    readOnly={lock}
+                    bordered
+                    fullWidth
+                    required
+                    color="primary"
+                    size="lg"
+                    labelPlaceholder="Data"  
+                    onChange={(event)=>setDate(event.target.value)}
+                    />
+                </div>
+                <div className={`${hidden} mt-8 z-10`}>
                     <Textarea
                         initialValue={data == undefined ? null : data.description}
                         readOnly={lock}
@@ -405,6 +603,7 @@ export function AcaoFerramentasModalBody(props) {
                         color="primary"
                         size="lg"
                         labelPlaceholder="Descrição"
+                        onChange={(event)=>setDescription(event.target.value)}
                     />
                 </div>
                 
@@ -415,24 +614,83 @@ export function AcaoFerramentasModalBody(props) {
 }
 
 export function AcaoMateriaisModalBody(props) {
+    const { setObjecttGlobal } = useContext(ObjecttContext)
+
     const data = props.data
     const footer = props.footer
     const action = props.action
+    const constructions = props.constructions
+    const array = props.array
+
+    const [id, setId] = useState(data == undefined ? null : data.id);
+    const [date, setDate] = useState(data == undefined ? null : data.data);
+    const [quantity, setQuantity] = useState(data == undefined ? null : data.quantity);
+    const [construction, setConstruction] = useState(data == undefined ? null : data.construction);
+    const [material, setMaterial] = useState(data == undefined ? null : data.material);
+    const [description, setDescription] = useState(data == undefined ? null : data.description);
 
     var lock
-    if (action == 'detalhes') { lock = true }
+    if (action == 'detalhesAcao') { lock = true }
 
     var hidden
-    if (action == 'delete') { hidden = 'hidden' }
+    if (action == 'deleteAcao') { hidden = 'hidden' }
+
+    const handleValueListBoxConst = (value) => {
+        setConstruction(value.value)
+    }
+
+    const handleValueListBoxMater = (value) => {
+        setMaterial(value.value)
+    }
+
+    let obj = {
+        id: id,
+        data: date,
+        quantity: parseInt(quantity),
+        constructionID: construction,
+        supplyID: material,
+        description: description,
+        isReport: props.isReport
+    }
+    console.log(date)
+    console.log(quantity)
+
+    useEffect(() => {
+        setObjecttGlobal(obj)
+    }, [id, date, quantity, construction, material, description])
 
     return (
         <div>
             <Modal.Body>
             <div className={`${hidden} pt-7 flex gap-3 z-50`}>
-                <ListBoxComponent items={materiais} />
-                <ListBoxComponent items={obras} />
-            </div>
-                <div className="mt-8 z-10">
+                <ListBoxComponent lock={lock} initialValue={data  == undefined ? null : data.constructionID} items={constructions} onValueChange={handleValueListBoxConst} />
+                <ListBoxComponent lock={lock} initialValue={data  == undefined ? null : data.supplyID} items={array} onValueChange={handleValueListBoxMater} />
+                </div>
+                <div className={`${hidden} pt-7 flex gap-3`}>
+                    <Input
+                    initialValue={data == undefined ? null : data.data}
+                    readOnly={lock}
+                    bordered
+                    fullWidth
+                    required
+                    color="primary"
+                    size="lg"
+                    labelPlaceholder="Data"  
+                    onChange={(event)=>setDate(event.target.value)}
+                    />
+                    <Input
+                    initialValue={data == undefined ? null : data.quantity}
+                    readOnly={lock}
+                    bordered
+                    fullWidth
+                    required
+                    color="primary"
+                    size="lg"
+                    labelPlaceholder="Quantidade"  
+                    onChange={(event)=>setQuantity(event.target.value)}
+                    />
+                </div>
+                <div className={`${hidden} mt-8 z-10`}>
                     <Textarea
                         initialValue={data == undefined ? null : data.description}
                         readOnly={lock}
@@ -442,6 +700,7 @@ export function AcaoMateriaisModalBody(props) {
                         color="primary"
                         size="lg"
                         labelPlaceholder="Descrição"
+                        onChange={(event)=>setDescription(event.target.value)}
                     />
                 </div>
                 
