@@ -4,13 +4,40 @@ import { EyeIcon } from '../components/icons/EyeIcon'
 import { DeleteIcon } from '../components/icons/DeleteIcon'
 import { EditIcon } from '../components/icons/EditIcon'
 import { IconButton } from '../components/icons/IconButton'
-import { FuncionariosModalBody, AcaoFuncionariosModalBody, FerramentasModalBody, MateriaisModalBody, AcaoFerramentasModalBody, AcaoMateriaisModalBody } from "./functions/InputsModais";
+import { FuncionariosModalBody, AcaoFuncionariosModalBody, FerramentasModalBody, MateriaisModalBody, AcaoFerramentasModalBody, AcaoMateriaisModalBody, ObrasModalBody } from "./functions/InputsModais";
+import { useContext } from "react";
+import ObjecttContext from "../contexts/ObjecttContext";
+import { workerPost } from "../api/workerPost";
+import { workerPut } from "../api/workerPut";
+import { workerDelete } from "../api/workerDelete";
+import { toolPost } from "../api/toolPost";
+import { toolPut } from "../api/toolPut";
+import { toolDelete } from "../api/toolDelete";
+import { supplyPost } from "../api/supplyPost";
+import { supplyPut } from "../api/supplyPut";
+import { supplyDelete } from "../api/supplyDelete";
+import { constructionPost } from "../api/constructionPost";
+import { constructionPut } from "../api/constructionPut";
+import { constructionDelete } from "../api/constructionDelete";
+import { actionSupplyPost } from "../api/actionSupplyPost";
+import { actionSupplyPut } from "../api/actionSupplyPut";
+import { actionSupplyDelete } from "../api/actionSupplyDelete";
+import { actionWorkerPost } from "../api/actionWorkerPost";
+import { actionWorkerPut } from "../api/actionWorkerPut";
+import { actionWorkerDelete } from "../api/actionWorkerDelete";
+import { actionToolPost } from "../api/actionToolPost";
+import { actionToolPut } from "../api/actionToolPut";
+import { actionToolDelete } from "../api/actionToolDelete";
 
 export default function ModalButton(props) {
+    const { ObjecttGlobal } = useContext(ObjecttContext)
 
     const action = props.action
     const type = props.type
     const data = props.data
+    const constructions = props.constructions
+    const array = props.array
+    const isReport = props.isReport
 
     const [visible, setVisible] = React.useState(false);
     const handler = () => setVisible(true);
@@ -23,8 +50,49 @@ export default function ModalButton(props) {
     var icon
     var title
     var footer
+    var create, update, deleta
 
-    if (action == 'detalhes') {
+    if (type == 'Funcionário' && action == 'adicionaAcao' ||
+        type == 'Funcionário' && action == 'detalhesAcao' ||
+        type == 'Funcionário' && action == 'editarAcao' ||
+        type == 'Funcionário' && action == 'deleteAcao') {
+        create = actionWorkerPost
+        update = actionWorkerPut
+        deleta = actionWorkerDelete
+    } else if (type == 'Funcionário') {
+        create = workerPost
+        update = workerPut
+        deleta = workerDelete
+    } else if (type == 'Ferramenta' &&
+        type == 'Ferramenta' && action == 'adicionaAcao' ||
+        type == 'Ferramenta' && action == 'detalhesAcao' ||
+        type == 'Ferramenta' && action == 'editarAcao' ||
+        type == 'Ferramenta' && action == 'deleteAcao') {
+        create = actionToolPost
+        update = actionToolPut
+        deleta = actionToolDelete
+    } else if (type == 'Ferramenta') {
+        create = toolPost
+        update = toolPut
+        deleta = toolDelete
+    } else if (type == 'Material' && action == 'adicionaAcao' ||
+        type == 'Material' && action == 'detalhesAcao' ||
+        type == 'Material' && action == 'editarAcao' ||
+        type == 'Material' && action == 'deleteAcao') {
+        create = actionSupplyPost
+        update = actionSupplyPut
+        deleta = actionSupplyDelete
+    } else if (type == 'Material') {
+        create = supplyPost
+        update = supplyPut
+        deleta = supplyDelete
+    } else if (type == 'Obra') {
+        create = constructionPost
+        update = constructionPut
+        deleta = constructionDelete
+    }
+
+    if (action == 'detalhes' || action == 'detalhesAcao') {
         title = 'Detalhes do ' + type
         icon = (
             <IconButton onClick={() => console.log("View user", data.id)}>
@@ -36,7 +104,7 @@ export default function ModalButton(props) {
                 <Button auto color="error" onPress={closeHandler}>Fechar</Button>    
             </Modal.Footer>
         )
-    } else if (action == 'editar') {
+    } else if (action == 'editar' || action == 'editarAcao') {
         title = 'Editar ' + type
         icon = (
             <IconButton onClick={() => console.log("Edit user", data.id)}>
@@ -46,10 +114,10 @@ export default function ModalButton(props) {
         footer = (
             <Modal.Footer>
                 <Button auto color="error" onPress={closeHandler}>Fechar</Button>
-                <Button auto onPress={closeHandler}>Atualizar</Button>    
+                <Button auto onPress={()=>update(ObjecttGlobal)}>Atualizar</Button>    
             </Modal.Footer>
         )
-    } else if(action == 'delete'){
+    } else if(action == 'delete' || action == 'deleteAcao'){
         title = 'Tem certeza que deseja deletar esse ' + type + '?'
         icon = (
             <IconButton onClick={() => console.log("Delete user", data.id)}>
@@ -59,7 +127,7 @@ export default function ModalButton(props) {
         footer = (
             <Modal.Footer>
                 <Button auto color="error" onPress={closeHandler}>Fechar</Button>
-                <Button auto flat color="error" onPress={closeHandler}>Deletar</Button>    
+                <Button auto flat color="error" onPress={()=>deleta(ObjecttGlobal)}>Deletar</Button>    
             </Modal.Footer>
         )
     } else if(action == 'adiciona'){
@@ -77,7 +145,7 @@ export default function ModalButton(props) {
         footer = (
             <Modal.Footer>
                 <Button auto color="error" onPress={closeHandler}>Fechar</Button>
-                <Button auto onPress={closeHandler}>Criar</Button>    
+                <Button auto onPress={()=>create(ObjecttGlobal)}>Criar</Button>    
             </Modal.Footer>
         )
     } else if (action == 'adicionaAcao') {
@@ -95,7 +163,7 @@ export default function ModalButton(props) {
         footer = (
             <Modal.Footer>
                 <Button auto color="error" onPress={closeHandler}>Fechar</Button>
-                <Button auto onPress={closeHandler}>Criar</Button>    
+                <Button auto onPress={()=>create(ObjecttGlobal)}>Criar</Button>    
             </Modal.Footer>
         )
     }
@@ -125,17 +193,34 @@ export default function ModalButton(props) {
             <MateriaisModalBody footer={footer} action={action} data={data} />
         )
 
-    } else if (type == 'Funcionário' && action == 'adicionaAcao') {
+    } else if (type == 'Obra' && action == 'adiciona' ||
+        type == 'Obra' && action == 'detalhes' ||
+        type == 'Obra' && action == 'editar' ||
+        type == 'Obra' && action == 'delete') {
         body = (
-            <AcaoFuncionariosModalBody footer={footer} action={action} data={data} />
+            <ObrasModalBody footer={footer} action={action} data={data} />
         )
-    } else if (type == 'Ferramenta' && action == 'adicionaAcao') {
+
+    } else if (type == 'Funcionário' && action == 'adicionaAcao' ||
+        type == 'Funcionário' && action == 'detalhesAcao' ||
+        type == 'Funcionário' && action == 'editarAcao' ||
+        type == 'Funcionário' && action == 'deleteAcao') {
         body = (
-            <AcaoFerramentasModalBody footer={footer} action={action} data={data} />
+            <AcaoFuncionariosModalBody footer={footer} action={action} data={data} constructions={constructions} array={array} isReport={isReport}/>
         )
-    } else if (type == 'Material' && action == 'adicionaAcao') {
+    } else if (type == 'Ferramenta' && action == 'adicionaAcao' ||
+        type == 'Ferramenta' && action == 'detalhesAcao' ||
+        type == 'Ferramenta' && action == 'editarAcao' ||
+        type == 'Ferramenta' && action == 'deleteAcao') {
         body = (
-            <AcaoMateriaisModalBody footer={footer} action={action} data={data} />
+            <AcaoFerramentasModalBody footer={footer} action={action} data={data} constructions={constructions} array={array} isReport={isReport}/>
+        )
+    } else if (type == 'Material' && action == 'adicionaAcao' ||
+        type == 'Material' && action == 'detalhesAcao' ||
+        type == 'Material' && action == 'editarAcao' ||
+        type == 'Material' && action == 'deleteAcao') {
+        body = (
+            <AcaoMateriaisModalBody footer={footer} action={action} data={data} constructions={constructions} array={array} isReport={isReport}/>
         )
     }
 
