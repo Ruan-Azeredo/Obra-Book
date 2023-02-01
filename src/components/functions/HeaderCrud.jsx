@@ -70,3 +70,26 @@ export function HeaderMateriais(props) {
         </div>
     )
 }
+
+export function HeaderObras(props) {
+    const data = props.data
+    var qtTotal = 0
+
+    data.map(item => {
+        qtTotal++
+    })
+
+    return (
+        <div className='bg-mainColor w-[95%] flex mx-auto z-20 relative rounded-[15px] justify-between'>
+            <div className="bg-white m-4 p-3 gap-4 flex text-center rounded-lg text-background">
+                <div className="text-start font-semibold flex h-fit self-center">Quantidade de Obras:</div>
+                <div>
+                    <span className="text-3xl text-mainColor font-bold">{qtTotal}</span>
+                </div>
+            </div>
+            <div className='m-4'>
+                <ModalButton type='Obra' action='adiciona' data={undefined}/>
+            </div>
+        </div>
+    )
+}
