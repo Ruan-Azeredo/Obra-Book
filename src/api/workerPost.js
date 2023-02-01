@@ -20,4 +20,5 @@ export const workerPost = (data) => {
     }).catch(function (error) {
         console.log(error);
     });
+    document.location.reload()
 }
