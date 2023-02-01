@@ -10,7 +10,7 @@ const Funcionarios = () => {
 
   const [data, setData] = useState([])
   useEffect(() => {
-    axios.get("http://localhost:8080/api/worker")
+    axios.get("http://localhost:8080/api/workers")
     .then((response) => setData(response.data))
   }, [])
 
