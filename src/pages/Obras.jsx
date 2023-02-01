@@ -3,29 +3,38 @@ import axios from 'axios'
 import React from 'react'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { HeaderFerramentas } from '../components/functions/HeaderCrud'
+import { HeaderFerramentas, HeaderObras } from '../components/functions/HeaderCrud'
 import ModalButton from '../components/ModalButton'
 import { ferramentas, obras } from '../data'
 
 const Obras = () => {
 
-  const [datas, setDatas] = useState()
+  const [data, setData] = useState([])
+  const [clientes, setClientes] = useState()
+
   useEffect(() => {
-    axios.get("http://localhost:8080/api/tools")
-    .then((response) => setDatas(response.data))
+    axios.get("http://localhost:8080/api/constructions")
+    .then((response) => setData(response.data))
+    
+    axios.get("http://localhost:8080/api/clients")
+    .then((response) => setClientes(response.data))
+    
   }, [])
-  console.log(datas)
+  console.log('clientes: ',clientes)
 
   const columns = [
     { name: 'Nome', key: 'name' },
     { name: 'Cliente', key: 'cliente' },
-    { name: 'Tipo', key: 'tipo' },
-    {name: 'Actions', key: 'actions'}
+    { name: 'Actions', key: 'actions' }
   ]
 
-  const data = obras
-
   const renderCell = (data, columnKey) => {
+    var clientName
+    clientes?.map(item => {
+      if (item.id == data.clientID) {
+        clientName = item.name
+      }
+    })
     const cellValue = data[columnKey]
     switch (columnKey) {
       case 'name':
@@ -34,28 +43,24 @@ const Obras = () => {
         )
       case 'cliente':
         return (
-          <div className='text-sm'>{data.client_name}</div>
-        )
-      case 'tipo':
-        return (
-            <div className='border-mainColor border-solid border-2 rounded-full px-6 py-1 text-sm w-fit'>{data.type}</div>
+          <div className='border-mainColor border-solid border-2 rounded-full px-6 py-1 text-sm w-fit'>{clientName}</div>
         )
       case "actions":
         return (
           <Row justify="center" align="center">
             <Col css={{ d: "flex" }}>
               <Tooltip content="Detalhes">
-                <ModalButton type='Ferramenta' action='detalhes' data={data} />
+                <ModalButton type='Obra' action='detalhes' data={data} />
               </Tooltip>
             </Col>
             <Col css={{ d: "flex" }}>
               <Tooltip content="Editar">
-                <ModalButton type='Ferramenta' action='editar' data={data} />
+                <ModalButton type='Obra' action='editar' data={data} />
               </Tooltip>
             </Col>
             <Col css={{ d: "flex" }}>
               <Tooltip content="Delete" color="error">
-                <ModalButton type='Ferramenta' action='delete' data={data} /> 
+                <ModalButton type='Obra' action='delete' data={data} /> 
               </Tooltip>
             </Col>
           </Row>
@@ -67,8 +72,8 @@ const Obras = () => {
 
   return (
     <div className='text-white w-full p-[15px]'>
-      <div className='mx-7 my-5 text-lg font-medium'>Ferramentas</div>
-      <HeaderFerramentas data={data} />
+      <div className='mx-7 my-5 text-lg font-medium'>Obras</div>
+      <HeaderObras data={data} />
       <div className='relative -top-14 z-10'>
         <Table
           aria-label="Example table with custom cells"
