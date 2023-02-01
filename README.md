@@ -166,4 +166,16 @@ export function HeaderFerramentas(props) {
 }
 ```
 
-Cada função recebe recebe props, de onde basicamente será retirada a data, para que possa ser utilizada em qualquer informações que deve ficar evidente acima da < Table >, neste caso possui apenas a quantidade total de ferramente(a logica é feita neste componente). Também no Header, existe o botão de Adicionar de todos os CRUDs, que chama o componente ModalButton, e é importante ressaltar, que como ele vai acessar a função POST, ele não precisa de nehuma *data*, assim este parametro no header é passado como undefined 
+Cada função recebe recebe props, de onde basicamente será retirada a data, para que possa ser utilizada em qualquer informações que deve ficar evidente acima da < Table >, neste caso possui apenas a quantidade total de ferramente(a logica é feita neste componente). Também no Header, existe o botão de Adicionar de todos os CRUDs, que chama o componente ModalButton, e é importante ressaltar, que como ele vai acessar a função POST, ele não precisa de nehuma *data*, assim este parametro no header é passado como undefined.
+
+#### ModalButton
+
+Este componente basicamente é o componente de Modal, onde são definidos os Botões e os Modais, neste componete são passados como props:
+- *action*, que é a **ação** que vai ser executada, 'detalhes', 'editar', 'delete', 'adiciona'
+- *type*, que é a o **tipo**, 'Funcionario', 'Ferramenta', 'Material', ...
+- *data*, que são as **infos** que tem em cada linha da tabela, e que em geral é passado para ModalBody.
+```JavaScript
+<ModalButton type='Ferramenta' action='delete' data={data} />
+```
+
+Dentro do componente ModalButton, existem uma serie de condicionais
