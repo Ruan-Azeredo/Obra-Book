@@ -1,4 +1,4 @@
-export const funcionarios = [
+export const funcionariosF = [
     {
         id: 1,
         engenheiro_id: 1,
@@ -53,7 +53,7 @@ export const funcionarios = [
     }
 ]
 
-export const ferramentas = [
+export const ferramentasF = [
     {
         id: 1,
         name: 'Martelete',
@@ -64,7 +64,7 @@ export const ferramentas = [
     }
 ]
 
-export const materiais = [
+export const materiaisF = [
     {
         id: 1,
         name: 'Areia',
@@ -91,7 +91,7 @@ export const materiais = [
     }
 ]
 
-export const obras = [
+export const obrasF = [
     {
         id: 1,
         client_id: 1,
@@ -115,7 +115,7 @@ export const obras = [
     },
 ]
 
-export const clientes = [
+export const clientesF = [
     {
         id: 1,
         name: 'Ramon Gonçalves',
@@ -124,7 +124,7 @@ export const clientes = [
     },
 ]
 
-export const dias = [
+export const diasF = [
     {
         date: '12/10/2021'
     },
@@ -133,7 +133,7 @@ export const dias = [
     }
 ]
 
-export const acaoFuncionarios = [
+export const acaoFuncionariosF = [
     {
         id: 1,
         employee_id: 1,
@@ -163,7 +163,7 @@ export const acaoFuncionarios = [
     }
 ]
 
-export const acaoFerramentas = [
+export const acaoFerramentasF = [
     {
         id: 1,
         tool_id: 1,
@@ -175,7 +175,7 @@ export const acaoFerramentas = [
     }
 ]
 
-export const acaoMateriais = [
+export const acaoMateriaisF = [
     {
         id: 1,
         material_id: 1,

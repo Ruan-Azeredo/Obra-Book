@@ -3,15 +3,19 @@ import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { HeaderMateriais } from '../components/functions/HeaderCrud'
 import ModalButton from '../components/ModalButton'
-import { materiais } from '../data'
+import { materiaisF } from '../data'
 
 
 const Materiais = () => {
 
   const [data, setData] = useState([])
   useEffect(() => {
-    axios.get("http://localhost:8080/api/supplies")
-    .then((response) => setData(response.data))
+    if(process.env.REACT_APP_ENV == 'fakeData'){
+      setData(materiaisF)
+    } else{
+      axios.get("http://localhost:8080/api/supplies")
+      .then((response) => setData(response.data))
+    }
   }, [])
 
   const columns = [

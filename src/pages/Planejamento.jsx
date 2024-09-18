@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react'
 import CardDayObra from '../components/CardDayObra'
 import { archiveIcon, groupIcon, wrenchIcon } from '../components/icons'
 import ModalButton from '../components/ModalButton'
-// import { acaoFuncionarios, obras, dias, acaoFerramentas, acaoMateriais } from '../data'
+import { acaoFuncionariosF, obrasF, diasF, materiaisF, acaoFerramentasF, acaoMateriaisF, funcionariosF, ferramentasF } from '../data'
 
 const Planejamento = () => {
 
@@ -16,26 +16,36 @@ const Planejamento = () => {
   const [ferramentas, setFerramentas] = useState([])
   const [materiais, setMateriais] = useState([])
   useEffect(() => {
-    axios.get("http://localhost:8080/api/workerActions")
-    .then((response) => setAcaoFuncionarios(response.data))
+    if(process.env.REACT_APP_ENV == 'fakeData'){
+      setAcaoFuncionarios(acaoFuncionariosF)
+      setAcaoFerramentas(acaoFerramentasF)
+      setAcaoMateriais(acaoMateriaisF)
+      setObras(obrasF)
+      setFuncionarios(funcionariosF)
+      setFerramentas(ferramentasF)
+      setMateriais(materiaisF)
+    } else{
+      axios.get("http://localhost:8080/api/workerActions")
+      .then((response) => setAcaoFuncionarios(response.data))
+      
+      axios.get("http://localhost:8080/api/toolActions")
+      .then((response) => setAcaoFerramentas(response.data))
+      
+      axios.get("http://localhost:8080/api/supplyActions")
+      .then((response) => setAcaoMateriais(response.data))
+      
+      axios.get("http://localhost:8080/api/constructions")
+      .then((response) => setObras(response.data))
     
-    axios.get("http://localhost:8080/api/toolActions")
-    .then((response) => setAcaoFerramentas(response.data))
-    
-    axios.get("http://localhost:8080/api/supplyActions")
-    .then((response) => setAcaoMateriais(response.data))
-    
-    axios.get("http://localhost:8080/api/constructions")
-    .then((response) => setObras(response.data))
-  
-    axios.get("http://localhost:8080/api/workers")
-    .then((response) => setFuncionarios(response.data))
-    
-    axios.get("http://localhost:8080/api/tools")
-    .then((response) => setFerramentas(response.data))
-    
-    axios.get("http://localhost:8080/api/supplies")
-    .then((response) => setMateriais(response.data))
+      axios.get("http://localhost:8080/api/workers")
+      .then((response) => setFuncionarios(response.data))
+      
+      axios.get("http://localhost:8080/api/tools")
+      .then((response) => setFerramentas(response.data))
+      
+      axios.get("http://localhost:8080/api/supplies")
+      .then((response) => setMateriais(response.data))
+    }
   }, [])
 
   var days = []
@@ -62,7 +72,7 @@ const Planejamento = () => {
       days.push(item.data)
     }
   })
-  
+
   obras.map(obra => {
     constructions.push({name: obra.name, value: obra.id})
   })

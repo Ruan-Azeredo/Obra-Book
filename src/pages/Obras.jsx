@@ -5,7 +5,7 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { HeaderFerramentas, HeaderObras } from '../components/functions/HeaderCrud'
 import ModalButton from '../components/ModalButton'
-import { ferramentas, obras } from '../data'
+import { ferramentasF, obrasF, clientesF } from '../data'
 
 const Obras = () => {
 
@@ -13,11 +13,16 @@ const Obras = () => {
   const [clientes, setClientes] = useState()
 
   useEffect(() => {
-    axios.get("http://localhost:8080/api/constructions")
-    .then((response) => setData(response.data))
-    
-    axios.get("http://localhost:8080/api/clients")
-    .then((response) => setClientes(response.data))
+    if(process.env.REACT_APP_ENV == 'fakeData'){
+      setData(obrasF)
+      setClientes(clientesF)
+    } else{
+      axios.get("http://localhost:8080/api/constructions")
+      .then((response) => setData(response.data))
+      
+      axios.get("http://localhost:8080/api/clients")
+      .then((response) => setClientes(response.data))
+    }
     
   }, [])
   console.log('clientes: ',clientes)

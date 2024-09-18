@@ -4,14 +4,19 @@ import React, { useEffect, useState } from 'react'
 import { HeaderFuncionarios } from '../components/functions/HeaderCrud'
 import ModalButton from '../components/ModalButton'
 import { StyledBadge } from '../components/StyledBadge'
-import { funcionarios } from '../data'
+import { funcionariosF } from '../data'
 
 const Funcionarios = () => {
 
   const [data, setData] = useState([])
   useEffect(() => {
-    axios.get("http://localhost:8080/api/workers")
-    .then((response) => setData(response.data))
+    console.log(process.env)
+    if(process.env.REACT_APP_ENV == 'fakeData'){
+      setData(funcionariosF)
+    } else{
+      axios.get("http://localhost:8080/api/workers")
+      .then((response) => setData(response.data))
+    }
   }, [])
 
   const columns = [

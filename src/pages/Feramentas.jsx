@@ -5,14 +5,18 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { HeaderFerramentas } from '../components/functions/HeaderCrud'
 import ModalButton from '../components/ModalButton'
-import { ferramentas, funcionarios } from '../data'
+import { ferramentasF, funcionariosF } from '../data'
 
 const Feramentas = () => {
 
   const [data, setData] = useState([])
   useEffect(() => {
-    axios.get("http://localhost:8080/api/tools")
-    .then((response) => setData(response.data))
+    if(process.env.REACT_APP_ENV == 'fakeData'){
+      setData(ferramentasF)
+    } else{
+      axios.get("http://localhost:8080/api/tools")
+      .then((response) => setData(response.data))
+    }
   }, [])
 
   const columns = [
